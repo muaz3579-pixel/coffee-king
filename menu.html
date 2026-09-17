@@ -28,8 +28,15 @@
    <main>
    <section class="menu">
     <h1>Café Menu</h1>
+    
+    <!--Tabbed Menu-->
+    <div class="menu-tabs">
+        <button class="menu-tab active" data-target="hot">Hot Drinks</button>
+        <button class="menu-tab" data-target="cold">Cold Drinks</button>
+        <button class="menu-tab" data-target="pastries">Pastries</button>
+    </div>
 
-    <h2>Hot Drinks</h2>
+    <div class="menu-category active" id="hot">
     <div class="menu-item">
         <span class="item-name">Brewed Coffee</span>
         <span class="item-price">-- 100 Birr</span>
@@ -58,7 +65,9 @@
         <span class="item-name">Mocha Latte</span>
         <span class="item-price">-- 200 Birr</span>
     </div>
-    <h2>Cold Drinks</h2>
+    </div>
+    
+    <div class="menu-category" id="cold">
     <div class="menu-item">
         <span class="item-name">Iced Latte</span>
         <span class="item-price">-- 250 Birr</span>
@@ -71,8 +80,9 @@
         <span class="item-name">Iced Mocha Latte</span>
         <span class="item-price">-- 250 Birr</span>
     </div>
+    </div>
 
-    <h2>Pastries &amp; Baked Goods</h2>
+    <div class="menu-category" id="pastries">
     <div class="menu-item">
         <span class="item-name">Butter Croissant</span>
         <span class="item-price">-- 350 Birr</span>
@@ -92,6 +102,7 @@
     <div class="menu-item">
         <span class="item-name">Chocolate Cake</span>
         <span class="item-price">-- 200 Birr</span>
+    </div>
     </div>
    </section>
 
