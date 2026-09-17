@@ -1,3 +1,14 @@
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.querySelector('nav');
+
+if (navToggle) {
+   navToggle.addEventListener('click', function(){
+      console.log('hamburger clicked');
+      navLinks.classList.toggle('open');
+   });
+
+}
+
 const contactForm = document.getElementById('contactForm');
 
 if (contactForm){
