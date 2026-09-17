@@ -189,19 +189,58 @@ button[type="submit"] {
 button[type="submit"]:hover {
   background-color: #8a4f24;
 }
-/* styles the header for view point <= 600px */
+
+/* For the hamburger icon */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 26px;
+  height: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background-color: #2a2622;
+  border-radius: 2px;
+}
+/* styles the header for view point <= 600px [for the mobile version]*/
 @media (max-width: 600px) {
   header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
     flex-direction: column;
-    align-items:center;
-    
-    gap: 0.8rem;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #ddd;
+  }
+
+  nav.open {
+    display: flex;
   }
 
   nav a {
-    margin-left: 0;
-    margin-right: 1rem;
-    padding-left: 1rem;
-    border-left: 1px solid #ccc;
+    margin: 0;
+    padding: 0.6rem 0;
+    border-left: none;
   }
 }
