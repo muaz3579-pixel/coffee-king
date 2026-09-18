@@ -9,6 +9,7 @@ body {
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   color: #2a2622;
   line-height: 1.6;
+
 }
 /* adjust the header elemnts */
 header {
@@ -29,7 +30,7 @@ nav a {
   margin-left: 1.5rem;
   text-decoration: none;
   color: #2a2622;
-  font-weight: 500;
+  font-weiht: 500;
   padding-left: 1.5rem;
   border-left: 1px solid #ccc;
 }
@@ -133,10 +134,11 @@ footer {
 
 .contact h1 {
   margin-bottom: 1.5rem;
+  
 }
 
 .form-group {
-  margin-bottom: 1.2rem;
+  margin-bottom: 0rem;
 }
 
 .form-group label {
@@ -149,7 +151,7 @@ footer {
 .form-group textarea {
   width: 100%;
   padding: 0.6rem;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
   border-radius: 4px;
   font-family: inherit;
   font-size: 1rem;
