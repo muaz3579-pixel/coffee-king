@@ -1,6 +1,24 @@
 const navToggle = document.getElementById('navToggle');
 const navLinks = document.querySelector('nav');
 
+const menuTabs = document.querySelectorAll('.menu-tab');
+const menuCategories = document.querySelectorAll('.menu-category');
+
+menuTabs.forEach(function (tab) {
+   tab.addEventListener('click', function(){
+      menuTabs.forEach(function(t){
+         t.classList.remove('active');
+      });
+      menuCategories.forEach(function(category){
+         category.classList.remove('active');
+      });
+
+      tab.classList.add('active');
+
+      const targetID = tab.getAttribute('data-target');
+      document.getElementById(targetID).classList.add('active');
+   });
+});
 if (navToggle) {
    navToggle.addEventListener('click', function(){
       console.log('hamburger clicked');
