@@ -30,7 +30,7 @@ nav a {
   margin-left: 1.5rem;
   text-decoration: none;
   color: #2a2622;
-  font-weiht: 500;
+  font-weight: 500;
   padding-left: 1.5rem;
   border-left: 1px solid #ccc;
 }
@@ -53,6 +53,29 @@ nav a:hover {
 .hero p {
   color: #5b3a26;
   margin-bottom: 1.5rem;
+}
+
+.features {
+  display: flex;
+  gap: 2rem;
+  max-width: 900px;
+  margin: 4rem auto;
+  padding: 0 1rem;
+}
+
+.feature {
+  flex: 1;
+  text-align: center;
+}
+
+.feature h3 {
+  color: #a8632e;
+  margin-bottom: 0.6rem;
+}
+
+.feature p {
+  color: #5b3a26;
+  font-size: 0.95rem;
 }
 
 .btn {
@@ -288,10 +311,25 @@ button[type="submit"]:hover {
     padding: 0.6rem 0;
     border-left: none;
   }
+  .features {
+    flex-direction: column;
+  }
 }
 
 /* for highlighting the current page*/
 nav a.active {
   color: #a8632e;
   font-weight: 700;
+}
+
+/*for the reveal animation*/
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 1.6s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }

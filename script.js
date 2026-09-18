@@ -27,6 +27,21 @@ if (navToggle) {
 
 }
 
+const revealElements = document.querySelectorAll('.reveal');
+
+const observer =new IntersectionObserver(function (entries){
+   entries.forEach(function (entry){
+      if(entry.isIntersecting){
+         entry.target.classList.add('visible');
+      }
+   });
+}, { threshold: 0.2 });
+
+revealElements.forEach(function (el){
+   console.log('reveal elements found:', revealElements.length);
+   observer.observe(el);
+});
+
 const contactForm = document.getElementById('contactForm');
 
 if (contactForm){
