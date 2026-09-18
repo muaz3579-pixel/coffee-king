@@ -289,3 +289,9 @@ button[type="submit"]:hover {
     border-left: none;
   }
 }
+
+/* for highlighting the current page*/
+nav a.active {
+  color: #a8632e;
+  font-weight: 700;
+}
