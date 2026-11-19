@@ -1,91 +1,46 @@
-const navToggle = document.getElementById('navToggle');
-const navLinks = document.querySelector('nav');
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 
-const menuTabs = document.querySelectorAll('.menu-tab');
-const menuCategories = document.querySelectorAll('.menu-category');
+// Footer year
+$('#yr').textContent = new Date().getFullYear();
 
-menuTabs.forEach(function (tab) {
-   tab.addEventListener('click', function(){
-      menuTabs.forEach(function(t){
-         t.classList.remove('active');
-      });
-      menuCategories.forEach(function(category){
-         category.classList.remove('active');
-      });
-
-      tab.classList.add('active');
-
-      const targetID = tab.getAttribute('data-target');
-      document.getElementById(targetID).classList.add('active');
-   });
+// Mobile menu
+const burger = $('#burger'), list = $('#menuList');
+burger.addEventListener('click', () => {
+  const open = list.classList.toggle('open');
+  burger.setAttribute('aria-expanded', open);
 });
-if (navToggle) {
-   navToggle.addEventListener('click', function(){
-      console.log('hamburger clicked');
-      navLinks.classList.toggle('open');
-   });
+$$('#menuList a').forEach(a => a.addEventListener('click', () => {
+  list.classList.remove('open');
+  burger.setAttribute('aria-expanded', 'false');
+}));
 
-}
+// Menu tabs
+$$('.tab').forEach(t => t.addEventListener('click', () => {
+  $$('.tab').forEach(x => x.setAttribute('aria-selected', x === t));
+  $$('.panel').forEach(p => p.classList.toggle('on', p.id === t.dataset.p));
+}));
 
-const revealElements = document.querySelectorAll('.reveal');
+// Scroll reveal
+const io = new IntersectionObserver(entries => entries.forEach(e => {
+  if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); }
+}), { threshold: .15 });
+$$('.rev').forEach(el => io.observe(el));
 
-const observer =new IntersectionObserver(function (entries){
-   entries.forEach(function (entry){
-      if(entry.isIntersecting){
-         entry.target.classList.add('visible');
-      }
-   });
-}, { threshold: 0.2 });
-
-revealElements.forEach(function (el){
-   console.log('reveal elements found:', revealElements.length);
-   observer.observe(el);
+// Contact form validation
+const form = $('#form'), ok = $('#ok');
+const rules = {
+  name: v => v.trim().length < 2 && 'Please enter your full name.',
+  email: v => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) && 'Please enter a valid email address.',
+  message: v => v.trim().length < 10 && 'Message should be at least 10 characters.'
+};
+const check = k => {
+  const input = document.getElementById(k), msg = rules[k](input.value) || '';
+  $('#e-' + k).textContent = msg;
+  input.setAttribute('aria-invalid', !!msg);
+  return !msg;
+};
+Object.keys(rules).forEach(k => document.getElementById(k).addEventListener('input', () => check(k)));
+form.addEventListener('submit', e => {
+  e.preventDefault();
+  if (Object.keys(rules).map(k => check(k)).every(Boolean)) { ok.classList.add('on'); form.reset(); }
 });
-
-const contactForm = document.getElementById('contactForm');
-
-if (contactForm){
-const nameInput = document.getElementById('name');
-const nameError = document.getElementById('nameError');
-
-const emailInput = document.getElementById('email');
-const emailError = document.getElementById('emailError');
-
-const messageInput = document.getElementById('message');
-const messageError = document.getElementById('messageError');
-
-contactForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-   // console.log('form submitted');
-   let isValid = true;
-
-   // Name Check
-   if (nameInput.value.trim().length < 2) {
-    nameError.textContent = 'Please enter your Full Name.';
-    isValid = false;
-   } else {
-     nameError.textContent = '';
-   }
-   // Email Check
-     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-     if(!emailPattern.test(emailInput.value.trim())) {
-        emailError.textContent= 'Please enter a valid email address.';
-        isValid = false;
-     } else{
-        emailError.textContent = '';
-     }
-
-     //Message Check
-     if(messageInput.value.trim().length < 10) {
-        messageError.textContent= 'Message Should be at least 10 characters.';
-        isValid = false;
-     } else{
-        messageError.textContent = '';
-     }
-   
-   if (isValid) {
-    document.getElementById('formSuccess').classList.add('visible');
-    contactForm.reset();
-   }
-});
-}
