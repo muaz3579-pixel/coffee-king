@@ -23,7 +23,10 @@ section{padding-block:clamp(4rem,9vw,7rem);scroll-margin-top:70px}
 /* ===== Header / nav ===== */
 header{position:sticky;top:0;z-index:50;background:rgba(20,13,9,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
 .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
-.logo{font-family:var(--serif);font-size:1.4rem;font-weight:700}
+.logo{display:flex;align-items:baseline;gap:.35rem;font-family:var(--serif);font-size:1.4rem;font-weight:700}
+.king{position:relative;font-style:italic;color:var(--gold)}
+.crown{position:absolute;left:-.12em;top:-.7em;width:.95em;transform:rotate(-14deg);filter:drop-shadow(0 2px 6px rgba(212,162,76,.5));transition:transform .3s}
+.logo:hover .crown{transform:rotate(-4deg) translateY(-3px)}
 nav ul{display:flex;gap:2rem;list-style:none;align-items:center}
 nav a:not(.btn){color:var(--mute);font-weight:500;transition:color .2s}
 nav a:not(.btn):hover{color:var(--gold)}
